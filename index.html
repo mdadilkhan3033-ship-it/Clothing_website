@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Urban Threads - Modern Clothing Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background: url('https://via.placeholder.com/1600x500/1e1e1e/ffffff?text=Urban+Threads+Store') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      max-width: 600px;
+    }
+
+    .products {
+      padding: 50px 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      margin: 10px 0;
+      font-size: 1.2rem;
+    }
+
+    .product-info p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #111;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #444;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Urban Threads</h1>
+    <p>Style that speaks. Discover your perfect fit today.</p>
+  </header>
+
+  <section class="products" id="products">
+    <!-- Products will be added by JS -->
+  </section>
+
+  <footer>
+    © 2025 Urban Threads | All Rights Reserved
+  </footer>
+
+  <script>
+    const products = [
+      { id: 1, name: 'Classic White T-Shirt', desc: 'Soft cotton comfort', price: 799, img: 'https://via.placeholder.com/400x400?text=White+T-Shirt' },
+      { id: 2, name: 'Denim Jeans', desc: 'Slim fit stretch denim', price: 1599, img: 'https://via.placeholder.com/400x400?text=Denim+Jeans' },
+      { id: 3, name: 'Summer Dress', desc: 'Light and breezy design', price: 1299, img: 'https://via.placeholder.com/400x400?text=Summer+Dress' },
+      { id: 4, name: 'Leather Jacket', desc: 'Timeless classic look', price: 2999, img: 'https://via.placeholder.com/400x400?text=Leather+Jacket' },
+      { id: 5, name: 'Casual Hoodie', desc: 'Warm and stylish comfort', price: 1199, img: 'https://via.placeholder.com/400x400?text=Casual+Hoodie' },
+      { id: 6, name: 'Formal Shirt', desc: 'Perfect for office and meetings', price: 999, img: 'https://via.placeholder.com/400x400?text=Formal+Shirt' }
+    ];
+
+    const container = document.getElementById('products');
+    products.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      card.innerHTML = `
+        <img src="${p.img}" alt="${p.name}">
+        <div class="product-info">
+          <h3>${p.name}</h3>
+          <p>${p.desc}</p>
+          <div class="price">₹${p.price}</div>
+          <button onclick='buyProduct(${JSON.stringify(p)})'>Buy Now</button>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+
+    function buyProduct(product) {
+      localStorage.setItem('selectedProduct', JSON.stringify(product));
+      window.location.href = 'form.html';
+    }
+  </script>
+</body>
+</html>
